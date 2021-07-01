@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package codes;
+
+service ServiceForCode{
+	rpc AllCode(CodeSystemProvide) returns(AllinfoProvide);
+	rpc AddCode(InfoProvide) returns (InfoProvide);
+	rpc SearchCode(CodeProvide) returns (AllinfoProvide);
+	rpc UpdateCode(InfoProvide) returns (InfoProvide);
+	rpc DeleteCode(CodeProvide) returns (InfoProvide);
+}
+
+message CodeSystemProvide{
+	string codesystemURI=1;
+}
+
+message CodeProvide{
+	string codeID=1;
+	string codesystemURI=2;
+}
+
+message InfoProvide{
+	string codeID=1;
+	string codesystemURI=2;
+	string name=3;
+	string description=4;
+}
+
+message AllinfoProvide{
+	repeated InfoProvide items=1;
+}
