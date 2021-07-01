@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package valuesets;
+import "terminology/src/protos/code.proto";
+
+service ServiceForValueSet {
+	rpc SearchValueSet(ValueSetURIVersionProvide) returns (AllValueSetinfoProvide);
+	rpc AddValueSet(AllValueSetinfoProvide) returns (AllValueSetinfoProvide);
+	rpc FindCodesFromValueSet(ValueSetURIVersionProvide) returns (ValueSetToCodes);
+}
+message ValueSetURIVersionProvide{
+	string valuesetURI=1;
+	string versionNumber=2;
+}
+message AllValueSetinfoProvide{
+	string valuesetURI=1;
+	string versionNumber=2;
+	string name=3;
+	string description=4;
+	repeated codes.InfoProvide codes=5;
+}
+
+message ValueSetToCodes{
+	string valuesetURI=1;
+	string versionNumber=2;
+	repeated codes.InfoProvide codes=3;
+}
